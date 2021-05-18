@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+
+import Button from './components/Button';
+import Card from './components/Card'
+import Currency from './components/Currency'
 
 function App() {
+  const [value, setValue] = useState(0);
+  const [isSent, setIsSent] = useState(false);
+
+  const incrementValue = () => {
+    setValue(value => value + 10);
+  }
+
+  const decrementValue = () => {
+    setValue(value => value - 10);
+  }
+
+  const sendValue = () => {
+    setIsSent(true);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Card>
+      {!isSent ? (
+        <>
+          <Button label="Decrementar" onClick={decrementValue} backgroundColor="red" disabled={value === 0} />
+          <Button label="Incrementar" onClick={incrementValue} backgroundColor="green" />
+    
+          <Currency value={value} size={48} />
+    
+          <Button label="Enviar" onClick={sendValue} />
+        </>
+      ) : (
+        <p>Valor enviado!</p>
+      )}
+    </Card>
   );
 }
 

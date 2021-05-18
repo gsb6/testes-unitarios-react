@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import App from './App';
+import Button from '.';
 
-describe('App', () => {
+describe('Button', () => {
 
 })
